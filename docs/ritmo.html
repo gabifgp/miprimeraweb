@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ritmo</title>
+
+    <style>
+        @font-face {
+            font-family: 'Horizon';
+            src: url('horizon.otf') format('opentype');
+        }
+        body {
+            background-color: black;
+            color: yellow;
+            font-family: 'Horizon', sans-serif;
+            font-size: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 15px;
+        }
+        a {
+            color: white; /* Color del enlace */
+            font-family: 'Horizon', sans-serif;
+            text-decoration: none; /* Elimina el subrayado del enlace */
+            font-size: 20px; /* Tamaño de la letra del enlace */
+            margin-top: 10px; /* Espacio entre el texto principal y el enlace */
+            margin: 15px;
+        }
+
+        a:hover {
+            color: gray; /* Cambia el color al pasar el ratón por encima */
+        }
+
+        img {
+            max-width: 80%; /* La imagen no superará el 80% del ancho de la ventana */
+            height: auto; /* Mantiene la proporción de la imagen */
+        }
+        .editor-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-family: 'Horizon', sans-serif;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: yellow;
+            color: black;
+            border: none;
+            border-radius: 8px;
+        }
+
+        button:hover {
+            background-color: gray;
+        }
+
+        .contenido-nuevo {
+            background-color: black;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div id="content">
+    RITMO
+    <a onclick="mostrarImagen()">Menu</a> <!-- Enlace que cambia el contenido -->
+    <a onclick="mostrarEditor()">Ciudades</a>
+
+</div>
+
+<script>
+    // Guarda el contenido original
+        const contenidoOriginal = document.getElementById('content').innerHTML;
+
+        function mostrarImagen() {
+            const content = document.getElementById('content');
+
+            // Cambia el contenido a la imagen
+            content.innerHTML = '<img src="f1614231-e527-487f-b4e9-5830e46f8d92.jpg" alt="Imagen del menú">';
+
+            // Añade un nuevo estado al historial
+            history.pushState({pagina: "menu"}, '', '#menu');
+        }
+
+        function mostrarEditor() {
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <div class="editor-container">
+                    <button onclick="agregarTitulo()">Madrid</button>
+                    <button onclick="agregarParrafo()">Zaragoza</button>
+
+                </div>
+            `;
+            history.pushState({ pagina: "escribir" }, '', '#escribir');
+        }
+
+        function agregarTitulo() {
+            const zonaEdicion = document.getElementById('zona-edicion');
+            const nuevoTitulo = document.createElement('h2');
+            nuevoTitulo.textContent = 'MADRID ';
+            zonaEdicion.appendChild(nuevoTitulo);
+        }
+
+        function agregarParrafo() {
+            const zonaEdicion = document.getElementById('zona-edicion');
+            const nuevoParrafo = document.createElement('p');
+            nuevoParrafo.textContent = 'ZARAGOZA ';
+            zonaEdicion.appendChild(nuevoParrafo);
+        }
+
+
+
+        // Evento para detectar cuando se pulsa el botón de retroceder
+        window.addEventListener('popstate', function (event) {
+            const content = document.getElementById('content');
+
+            if (event.state && event.state.pagina === "menu") {
+                content.innerHTML = '<img src="imagen.jpg" alt="Imagen del menú">';
+            } else {
+                content.innerHTML = contenidoOriginal;
+            }
+        });
+</script>
+
+</body>
+</html>

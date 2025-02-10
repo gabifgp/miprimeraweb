@@ -1,0 +1,64 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header 
+header {
+    background-color: #923c3c;
+    color: rgb(187, 63, 63);
+    padding: 15px;
+    text-align: center;
+}
+*/
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #12a9f4;
+    color: #96a739;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Contenido principal */
+main {
+    padding: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: #8b4f4f;
+    color: rgb(208, 35, 35);
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+img{
+width: 60px;
+height: 60px;
+}
